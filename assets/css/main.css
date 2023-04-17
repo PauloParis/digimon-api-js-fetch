@@ -1,0 +1,32 @@
+
+body {
+    background-color: rgba(241, 240, 240, 0.707);
+}
+
+.fav {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.fav:hover {
+    color: pink;
+    border-color: pink;
+    border-width: 2px;
+    font-weight: 500;
+}
+
+.abrir:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.navbar {
+    background: linear-gradient(blue, orange);
+    border-bottom: 2px solid black;
+}
