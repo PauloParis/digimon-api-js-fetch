@@ -6,17 +6,36 @@ var modal = document.getElementById("modal");
 var array = [];
 var color = "";
 
+
+function filtrar(id) {
+  var cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    let nivel = card.querySelector(".badge");
+
+    nivel.textContent != id ? card.classList.add("ocultar") : card.classList.remove("ocultar");
+    if (id == "All")  card.classList.remove("ocultar");
+
+  });
+}
+
 fetch(url)
   .then((res) => res.json())
   .then((data) => {
-
     data.forEach((item) => {
-
       // llamo a la función nivel, para agregar color personalizado segun nivel
       nivel(item.level);
 
       var card = document.createElement("div");
-      card.classList.add("col-6", "col-sm-3", "col-md-2", "abrir", "card", "shadow", "p-2", "m-3");
+      card.classList.add(
+        "col-6",
+        "col-sm-3",
+        "col-md-2",
+        "abrir",
+        "card",
+        "shadow",
+        "p-2",
+        "m-3"
+      );
 
       lista.appendChild(card);
 
@@ -44,7 +63,6 @@ fetch(url)
 
       // click sobre un digimon
       card.addEventListener("click", () => {
-
         var divBtn = document.createElement("div");
         var btn = document.createElement("button");
         var contenidoBtn = document.createTextNode("Guardar en Favoritos");
@@ -52,13 +70,15 @@ fetch(url)
         array = JSON.parse(localStorage.getItem("favoritos"));
 
         // si el array tiene elementos
-        if(array != undefined) { 
-            let buscar = array.find((item) => item.nombre == contenidoH6.nodeValue); 
-            if (buscar != undefined) {
-                contenidoBtn.textContent = "Eliminar de Favoritos";
-                btn.classList.remove("btn-primary");
+        if (array != undefined) {
+          let buscar = array.find(
+            (item) => item.nombre == contenidoH6.nodeValue
+          );
+          if (buscar != undefined) {
+            contenidoBtn.textContent = "Eliminar de Favoritos";
+            btn.classList.remove("btn-primary");
             btn.classList.add("btn-danger");
-            }
+          }
         }
 
         nivel(contenidoLevel.nodeValue);
@@ -102,7 +122,9 @@ fetch(url)
             return localStorage.setItem("favoritos", JSON.stringify(ob));
           }
 
-          let found = array.find((item) => item.nombre == contenidoH6.nodeValue);
+          let found = array.find(
+            (item) => item.nombre == contenidoH6.nodeValue
+          );
           if (found != undefined) {
             array = array.filter((item) => item != found);
 
@@ -119,26 +141,22 @@ fetch(url)
           localStorage.setItem("favoritos", JSON.stringify(array));
         });
       });
-
     });
   })
   .catch((error) => {
     console.log(error);
   });
 
-
-
 function nivel(level) {
-  color = (level == "In Training") ? "primary" :
-          (level == "Rookie") ? "success" :
-          (level == "Champion") ? "danger" :
-          (level == "Ultimate") ? "warning" :
-          (level == "Fresh") ? "info" :
-          (level == "Mega") ? "dark" :
-          (level == "Training") ? "primary" :
-          (level == "Armor") ? "secondary" : color
+  color = level == "In Training" ? "primary" : 
+          level == "Rookie" ? "success" : 
+          level == "Champion" ? "danger" : 
+          level == "Ultimate" ? "warning" : 
+          level == "Fresh" ? "info" : 
+          level == "Mega" ? "dark" : 
+          level == "Training" ? "primary" : 
+          level == "Armor" ? "secondary" : color;
 }
-
 
 function vaciarModal() {
   modal.innerHTML = "";
