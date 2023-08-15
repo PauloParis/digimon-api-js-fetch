@@ -61,6 +61,7 @@ fetch(url)
       var contenidoImg = `${item.img}`;
       img.src = contenidoImg;
 
+
       // click sobre un digimon
       card.addEventListener("click", () => {
         var divBtn = document.createElement("div");

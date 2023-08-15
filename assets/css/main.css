@@ -37,6 +37,7 @@ body {
                 0 0 20px 0 rgba(255, 166, 0);
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 
@@ -47,3 +48,24 @@ body {
 .bg-all {
     background: linear-gradient(rgb(106, 106, 255), orange);
 }
+
+.card img {
+    width: auto;
+    aspect-ratio: 4/4;
+    object-fit: contain;
+}
+
+@media only screen and (max-width: 576px) {
+    .centrar {
+        justify-content: center !important;
+    }
+    .card {
+        width: 85%;
+    }
+    .card img {
+        width: 200px;
+        display: block;
+        margin: auto
+    }
+}
+
